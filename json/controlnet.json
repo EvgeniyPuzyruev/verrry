@@ -1,0 +1,273 @@
+{
+  "27": {
+    "inputs": {
+      "ckpt_name": "epicrealism_pureEvolutionV5.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "28": {
+    "inputs": {
+      "lora_name": "LCM_LoRA_Weights_SD15.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "27",
+        0
+      ],
+      "clip": [
+        "27",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "29": {
+    "inputs": {
+      "text": "forest on bg",
+      "clip": [
+        "28",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive"
+    }
+  },
+  "30": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "28",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative"
+    }
+  },
+  "31": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": 20915978502991,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "lcm",
+      "scheduler": "sgm_uniform",
+      "start_at_step": 0,
+      "end_at_step": 10000,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "28",
+        0
+      ],
+      "positive": [
+        "40",
+        0
+      ],
+      "negative": [
+        "40",
+        1
+      ],
+      "latent_image": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced)"
+    }
+  },
+  "32": {
+    "inputs": {
+      "width": 768,
+      "height": 768,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "33": {
+    "inputs": {
+      "strength": [
+        "54",
+        1
+      ],
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "29",
+        0
+      ],
+      "negative": [
+        "30",
+        0
+      ],
+      "control_net": [
+        "37",
+        0
+      ],
+      "image": [
+        "35",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet (Advanced)"
+    }
+  },
+  "34": {
+    "inputs": {
+      "image": "/Users/evgenypuzyrev/Desktop/my_app/input/controlnet/temp.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "35": {
+    "inputs": {
+      "low_threshold": 100,
+      "high_threshold": 200,
+      "resolution": 512,
+      "image": [
+        "52",
+        0
+      ]
+    },
+    "class_type": "CannyEdgePreprocessor",
+    "_meta": {
+      "title": "Canny Edge"
+    }
+  },
+  "37": {
+    "inputs": {
+      "control_net_name": "control_v11p_sd15_canny.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
+  },
+  "38": {
+    "inputs": {
+      "samples": [
+        "31",
+        0
+      ],
+      "vae": [
+        "27",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "40": {
+    "inputs": {
+      "strength": [
+        "54",
+        1
+      ],
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "33",
+        0
+      ],
+      "negative": [
+        "33",
+        1
+      ],
+      "control_net": [
+        "46",
+        0
+      ],
+      "image": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet (Advanced)"
+    }
+  },
+  "42": {
+    "inputs": {
+      "a": 6.28,
+      "bg_threshold": 0.1,
+      "resolution": 512,
+      "image": [
+        "52",
+        0
+      ]
+    },
+    "class_type": "MiDaS-DepthMapPreprocessor",
+    "_meta": {
+      "title": "MiDaS Depth Map"
+    }
+  },
+  "46": {
+    "inputs": {
+      "control_net_name": "control_v11f1p_sd15_depth.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
+  },
+  "52": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 768,
+      "height": 768,
+      "crop": "center",
+      "image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Upscale Image"
+    }
+  },
+  "54": {
+    "inputs": {
+      "number_type": "integer",
+      "number": 0.2
+    },
+    "class_type": "Constant Number",
+    "_meta": {
+      "title": "XYZ"
+    }
+  },
+  "55": {
+    "inputs": {
+      "filename_prefix": "controlnet/_",
+      "images": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}

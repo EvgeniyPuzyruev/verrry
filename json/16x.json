@@ -1,0 +1,219 @@
+{
+  "14": {
+    "inputs": {
+      "image": "/Users/evgenypuzyrev/Desktop/my_app/input/upscale/temp.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "15": {
+    "inputs": {
+      "ckpt_name": "epicrealism_pureEvolutionV5.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "16": {
+    "inputs": {
+      "upscale_by": 2,
+      "seed": 166192393175397,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "lcm",
+      "scheduler": "sgm_uniform",
+      "denoise": [
+        "24",
+        1
+      ],
+      "mode_type": "Linear",
+      "tile_width": 512,
+      "tile_height": 512,
+      "mask_blur": 16,
+      "tile_padding": 32,
+      "seam_fix_mode": "None",
+      "seam_fix_denoise": 1,
+      "seam_fix_width": 64,
+      "seam_fix_mask_blur": 8,
+      "seam_fix_padding": 16,
+      "force_uniform_tiles": true,
+      "tiled_decode": false,
+      "image": [
+        "14",
+        0
+      ],
+      "model": [
+        "17",
+        0
+      ],
+      "positive": [
+        "18",
+        0
+      ],
+      "negative": [
+        "19",
+        0
+      ],
+      "vae": [
+        "15",
+        2
+      ],
+      "upscale_model": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "UltimateSDUpscale",
+    "_meta": {
+      "title": "Ultimate SD Upscale"
+    }
+  },
+  "17": {
+    "inputs": {
+      "lora_name": "LCM_LoRA_Weights_SD15.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "15",
+        0
+      ],
+      "clip": [
+        "15",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "18": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "17",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "19": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "17",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "20": {
+    "inputs": {
+      "model_name": "4x-ESRGAN.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "21": {
+    "inputs": {
+      "filename_prefix": "upscale/4x_",
+      "images": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "22": {
+    "inputs": {
+      "upscale_by": 2,
+      "seed": 275645751760843,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "lcm",
+      "scheduler": "sgm_uniform",
+      "denoise": [
+        "24",
+        1
+      ],
+      "mode_type": "Linear",
+      "tile_width": 512,
+      "tile_height": 512,
+      "mask_blur": 32,
+      "tile_padding": 64,
+      "seam_fix_mode": "None",
+      "seam_fix_denoise": 1,
+      "seam_fix_width": 64,
+      "seam_fix_mask_blur": 8,
+      "seam_fix_padding": 16,
+      "force_uniform_tiles": true,
+      "tiled_decode": false,
+      "image": [
+        "16",
+        0
+      ],
+      "model": [
+        "17",
+        0
+      ],
+      "positive": [
+        "18",
+        0
+      ],
+      "negative": [
+        "19",
+        0
+      ],
+      "vae": [
+        "15",
+        2
+      ],
+      "upscale_model": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "UltimateSDUpscale",
+    "_meta": {
+      "title": "Ultimate SD Upscale"
+    }
+  },
+  "23": {
+    "inputs": {
+      "filename_prefix": "upscale/16x_",
+      "images": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "24": {
+    "inputs": {
+      "number_type": "float",
+      "number": 0.2
+    },
+    "class_type": "Constant Number",
+    "_meta": {
+      "title": "Constant Number"
+    }
+  }
+}

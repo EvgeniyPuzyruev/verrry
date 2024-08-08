@@ -1,0 +1,73 @@
+{
+  "19": {
+    "inputs": {
+      "image": "/Users/evgenypuzyrev/Desktop/my_app/input/rembg/temp.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "20": {
+    "inputs": {
+      "rmbgmodel": [
+        "21",
+        0
+      ],
+      "image": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "BRIA_RMBG_Zho",
+    "_meta": {
+      "title": "🧹BRIA RMBG"
+    }
+  },
+  "21": {
+    "inputs": {},
+    "class_type": "BRIA_RMBG_ModelLoader_Zho",
+    "_meta": {
+      "title": "🧹BRIA_RMBG Model Loader"
+    }
+  },
+  "22": {
+    "inputs": {
+      "filename_prefix": "rembg/removed_bg/_",
+      "images": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "23": {
+    "inputs": {
+      "mask": [
+        "20",
+        1
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "25": {
+    "inputs": {
+      "filename_prefix": "rembg/mask/_",
+      "images": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}
