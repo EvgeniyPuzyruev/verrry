@@ -1,6 +1,6 @@
 # Verrry project
 ** **
-###Short video about project###
+### Short video about project ###
 [![Watch the video](https://img.youtube.com/vi/ija4kg7qRow/hqdefault.jpg)](https://youtu.be/ija4kg7qRow?si=SPWH5dFGS1MqCu3-)
 ** **
 ## Using local installed ComfyUI graphic interface for Stable Diffusion, Gradio web-interface for demonstration some skills and opportunities(mine and genertive AI)
