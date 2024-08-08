@@ -1,6 +1,6 @@
 # Verrry project
 ** **
-[![Watch the video](https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg)](https://youtu.be/ija4kg7qRow?si=SPWH5dFGS1MqCu3-)
+[![Watch the video](https://img.youtube.com/vi/ija4kg7qRow/hqdefault.jpg)](https://youtu.be/ija4kg7qRow?si=SPWH5dFGS1MqCu3-)
 ** **
 ## Using local installed ComfyUI graphic interface for Stable Diffusion, Gradio web-interface for demonstration some skills and opportunities(mine and genertive AI)
 **Disclaimer** *This project was created for fun and in order to better understand the interaction of Comfy, gradio and python. I am not programmer, developer or somebody like that so something can break, stop working correctly, and I have no idea how it works under heavy load(more than one user, huh)*
